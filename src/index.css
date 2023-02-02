@@ -5,9 +5,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #888;
+  background-color: #fff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+span{
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+#violet{
+  color:#651FFF;
+  padding: .2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  
+}
+#orange{
+  color:#FF9100;
+  cursor: pointer;
+  padding: .2rem;
+  border-radius: 15px;
+}
+#green{
+  color:#00E676;
+  cursor: pointer;
+  padding: .2rem;
+  border-radius: 15px;
+}
+#blue{
+  color: #00B0FF;
+  cursor: pointer;
+  padding: .2rem;
+  border-radius: 15px;
+}
+#normal{
+  color: #888;
+  cursor: pointer;
+}
+
+@media screen {
+  
+}
+
+
+@media (max-width: 900px) {
+  #violet{
+    background-color: #B39DDB;
+  }
+  #orange{
+    background-color: #FFB74D;
+  }
+  #green{
+    background-color: #A5D6A7;
+  }
+  #blue{
+    background-color: #81D4FA;
+  }
 }
