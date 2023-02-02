@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import LoginView from "./views/Login/LoginView";
+import { auth } from "./api/firebase";
+import {  onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import Dashboard from "./views/Dashboard/Dashboard";
+import LoadingPage from "./components/LoadingPage/LoadingPage";
+
 
 function App() {
+  const  [userState, setUserState] = useState('')
+  const  [currentUser, setCurrentUser] = useState()
+
+  onAuthStateChanged(auth, (user)=>{
+    if(user){
+      if (user) {
+        setUserState('login')
+        setCurrentUser(user)
+      }
+    }else{
+      setUserState('logout')
+      setCurrentUser('')
+    }
+  })
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContainer>
+      {
+        userState === '' ? 
+        <LoadingPage/>
+        : userState === 'logout' ?
+        <LoginView/>
+        :
+        <Dashboard user={currentUser}/>
+      }
+
+
+    </MainContainer>
   );
 }
 
+
+const MainContainer = styled.section`
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+`
 export default App;
