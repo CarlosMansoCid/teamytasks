@@ -6,14 +6,15 @@ import {RxSun} from "react-icons/rx";
 import {AiOutlineClockCircle} from "react-icons/ai"
 import { useState } from "react";
 import { upLoadNewTask } from "../../api/apiFunctions";
+import { mediaDevices } from "../mediaSizes/mediaDevices";
 
 const TaskComponent = ({hideTaskComponent, selectedTeam}) =>{
 
     const [active, setActive] = useState(false)  
+    const screenWidth = window.screen.width
 
     
     const handleTextInput =(e)=>{
-        const screenWidth = window.screen.width
         const editor = document.getElementById('_texto')
             if(editor.innerText.length === 1){
                 setActive(false)
@@ -52,7 +53,7 @@ const TaskComponent = ({hideTaskComponent, selectedTeam}) =>{
             .replace(/#(.*?) /gm, "<span id='violet'><AiOutlineMail/>#$1</span> ") // task
             .replace(/@(.*?) /gm, "<span id='green'>@$1</span> ") // mention
             // .replace(/(.*?)@(.*?)\.(.*?)/gm, "<span id='orange'> $1@$2.$3</span> ") // correo
-            .replace(/www\.(.*?)\.(.*?) /gm, `<span id='blue'>www.$1.$2</span> `) // link
+            .replace(/www\.(.*?)\.(.*?) /gm, `<a id='blue' href="https://$1.$2" target="_blank">www.$1.$2</a> `) // link
         );
       }
       //************************************************************************************//
@@ -145,10 +146,10 @@ const TaskComponent = ({hideTaskComponent, selectedTeam}) =>{
                 </TaskButtonsContainer>
                 <TaskButtonsContainer>
                     <TaskButtons id="cancel">
-                        <ButtonText onClick={hideTaskComponent}>Cancel</ButtonText>
+                        <ButtonTextActions onClick={hideTaskComponent}>Cancel</ButtonTextActions>
                     </TaskButtons>
                     <TaskButtons id="add">
-                        <ButtonText onClick={active === true ? addNewTask :  hideTaskComponent}>{active === true ? "Add" : "Ok"}</ButtonText>
+                        <ButtonTextActions onClick={active === true ? addNewTask :  hideTaskComponent}>{screenWidth > 500 ? active === true ? "Add" : "Ok" : active === true ? '+' : 'x' }</ButtonTextActions>
                     </TaskButtons>
                 </TaskButtonsContainer>
 
@@ -160,13 +161,28 @@ const TaskComponent = ({hideTaskComponent, selectedTeam}) =>{
 const TaskButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
+    width: auto;
 
 `
 const ButtonIcon = styled.div`
     font-size: x-large;
+
+
+`
+const ButtonTextActions = styled.p`
+    margin: 0;
 `
 const ButtonText = styled.p`
     margin: 0;
+
+
+        @media ${mediaDevices.tabletMedia} {
+            display: none;
+        }
+        @media ${mediaDevices.mobileMedia} {
+            display: none;
+        }
+    
 `
 const TaskButtons = styled.div`
     display: flex;
@@ -181,6 +197,16 @@ const TaskButtons = styled.div`
     border-color: #ddd;
     color: #ddd;
     pointer-events:none;
+
+    width: fit-content;
+
+    /* @media ${mediaDevices.tabletMedia} {
+        font-size: large.5rem;
+    } */
+    @media ${mediaDevices.mobileMedia} {
+        font-size: .7rem;
+        padding: 0.2rem;
+    }
 
     &#button{
         color: #666;
@@ -203,6 +229,9 @@ const TaskButtons = styled.div`
         color: #000;
         cursor: pointer;
         pointer-events:all;
+        @media ${mediaDevices.mobileMedia} {
+            display: none;
+        }
     }
     &#add{
         padding: .7rem 1.2rem;
@@ -220,6 +249,7 @@ const TaskUserAvatarContainer = styled.div`
     background-color: red;
     margin-top: 2px;
     border-radius: 50%;
+    cursor: pointer;
 `
 const TaskTextArea = styled.div`
     width: 96%;

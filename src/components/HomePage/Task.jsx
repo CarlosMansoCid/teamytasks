@@ -2,21 +2,35 @@ import styled from "styled-components";
 import {MdDelete} from 'react-icons/md'
 import {BsFillPencilFill} from "react-icons/bs"
 import { deleteTask } from "../../api/apiFunctions";
+import { useState } from "react";
 
-const Task = ({task, selectedTeam}) =>{
+const Task = ({task, selectedTeam, handleModifyTask}) =>{
 
+
+    const [showDeleteButton, setShowDeleteButton] = useState(false)
+
+    const handleShowDeleteButton = () =>{
+        setShowDeleteButton(!showDeleteButton)
+    }
 const handleTaskDelete = async () =>{
-    // console.log(selectedTeam)
-    await deleteTask(task, selectedTeam)
+    if(window.confirm('Delete this task ?')){
+        await deleteTask(task, selectedTeam)
+    }
 }
+
+
+
 
     return(
         <TaskItemContainer>
-            <TaskCheck type="checkbox"></TaskCheck>
+            <TaskCheck type="checkbox" onChange={()=>handleShowDeleteButton()}></TaskCheck>
             <TaskDescription dangerouslySetInnerHTML={{__html: task}}></TaskDescription>
             <Buttons>
-                <BsFillPencilFill style={{ cursor: 'pointer'}}/>
-                <MdDelete onClick={()=>handleTaskDelete()} style={{color: '#B71C1C', cursor: 'pointer'}}/>
+                {
+                    showDeleteButton &&
+                    <MdDelete onClick={()=>handleTaskDelete()} style={{color: '#B71C1C', cursor: 'pointer'}}/>
+
+                }
             </Buttons>
         </TaskItemContainer>
     )

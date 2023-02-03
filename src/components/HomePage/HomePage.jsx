@@ -18,13 +18,10 @@ const HomePage = ({handleShowTaskComponent, showTaskComponent, teams, selectedTe
 
     const getTeamData =()=>{
         if(selectedTeam !== ''){
-
-            console.log(selectedTeam)
             const docRef = doc(db, `teams`, selectedTeam)
             const unsub = onSnapshot(docRef, (doc) => {
                 if(doc.data() !== undefined){
                     setTasks(doc.data().tasks)
-                    console.log(doc.data())
                 }
 
         });

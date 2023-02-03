@@ -9,6 +9,7 @@ import SearchResults from "../../components/SearchResults/SearchResults";
 import HomePage from "../../components/HomePage/HomePage";
 import { doc, onSnapshot } from "firebase/firestore";
 import TaskComponent from "../../components/TasksComponent/TasksComponent";
+import { mediaDevices } from "../../components/mediaSizes/mediaDevices";
 
 
 
@@ -23,6 +24,7 @@ const Dashboard = ({user}) =>{
     const [option, setOption] = useState('home')
     const [showTaskComponent, setShowTaskComponent] = useState(false)   
     const [selectedTeam, setSelectedTeam] = useState('') 
+    const [showTasksList, setShowTasksList] = useState(true)
 
     useEffect(() => {
         getUserData()
@@ -70,6 +72,17 @@ const Dashboard = ({user}) =>{
         setSelectedTeam(team)
         setOption('home')
     }
+    const showTeamsList = () =>{
+        const tl = document.getElementById('left')
+        if(showTasksList === true){
+            tl.style.width = '100%'
+        }else{
+            tl.style.width = '0%'
+        }
+        setShowTasksList(!showTasksList)
+
+
+    }
 
     return(
         <DashboardContainer>
@@ -102,6 +115,12 @@ const Dashboard = ({user}) =>{
                                 <>You havent team's yet</>
                             }
                         </TeamsList>
+                        {
+                            option === 'search' ?
+                            <AsideButton onClick={() =>setHomePage()}>Go to tasks</AsideButton>
+                            :console.log('')
+                            
+                        }
                     </Aside>
                 </AsideLeft>
                 <CenterContainer>
@@ -135,30 +154,42 @@ const Dashboard = ({user}) =>{
                         showTaskComponent === true &&
                         <TaskComponent hideTaskComponent={hideTaskComponent} selectedTeam={selectedTeam}/>
                     }
-
+                    <ShowAsideButton onClick={()=>showTeamsList()}>{showTasksList === true ? "T" : 'x'}</ShowAsideButton>
                 </CenterContainer>
-                <AsideLeft>
-                    <Aside>
-                        {
-                            option === 'search' ?
-                            <AsideButton onClick={() =>setHomePage()}>Tasks</AsideButton>
-                            :console.log('')
-                            
-                        }
-                    </Aside>
-                </AsideLeft>
 
             </BodyContainer>
 
         </DashboardContainer>
     );
 }
+const ShowAsideButton = styled.div`
+    display: none;
+    padding: 1rem;
+    position: fixed;
+    bottom: 2px;
+    left: 2px;
+    cursor: pointer;
+    background-color: #0288D1;
+    border-radius: 50%;
+    width: .7rem;
+    height: .7rem;
+    text-align: center;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
 
+    @media ${mediaDevices.mobileMedia} {
+        display: flex;
+    }
+
+    
+`
 const CenterContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color: #fff;
 `
 const SearchResultsListTittle = styled.p``
 const SearchResultsList = styled.div`
@@ -167,15 +198,14 @@ const SearchResultsList = styled.div`
 `
 const Center = styled.section`
     width: 96%;
-    height: 100%;
+    height: 65%;
     margin-top: 3rem;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     padding: .5rem;
-    -webkit-box-shadow: 0px 0px 5px 0px #ddd;
-    -moz-box-shadow: 0px 0px 5px 0px #ddd;
-    box-shadow: 0px 0px 5px 0px #ddd;
+    overflow-y: scroll;
+
 `
 const TeamName = styled.p`
     margin: 0;
@@ -202,6 +232,14 @@ const AsideLeft = styled.div`
     width: 15%;
     height: auto;
     overflow: hidden;
+    transition: .5s;
+    /* -webkit-box-shadow: 0px 0px 5px 0px #ddd;
+    -moz-box-shadow: 0px 0px 5px 0px #ddd;
+    box-shadow: 0px 0px 5px 0px #ddd; */
+    @media ${mediaDevices.mobileMedia} {
+        width: 0;
+        font-size: .7rem;
+    }
 
     &#left{
         height: 100%;
@@ -212,7 +250,11 @@ const BodyContainer = styled.section`
     flex-direction: row;
     width: 100%;
 `
-const SearchContainer = styled.div``
+const SearchContainer = styled.div`
+    @media ${mediaDevices.mobileMedia} {
+        width: 40%;
+    }
+`
 
 const InfoContainer = styled.div`
     align-items: center;
@@ -221,6 +263,11 @@ const InfoContainer = styled.div`
     margin-right: 1rem;
     width: 40%;
     justify-content: right;
+
+    @media ${mediaDevices.mobileMedia} {
+        width: 60%;
+        /* justify-content: center; */
+    }
     
 
 `
@@ -234,6 +281,11 @@ const SignOutButton = styled.div`
     color: #fff;
     cursor: pointer;
 
+    @media ${mediaDevices.mobileMedia} {
+        width: 2rem;
+        font-size: .5rem;
+    }
+
     &:hover{
         background-color: #01579B;
     }
@@ -245,6 +297,12 @@ const DashboardText = styled.h3`
     padding: .3rem;
     margin: 0;
     width: auto;
+
+    
+
+    @media ${mediaDevices.mobileMedia} {
+        font-size: 1rem;
+    }
 `
 const AsideButton = styled.div`
     background-color: #fff;
@@ -258,10 +316,14 @@ const AsideButton = styled.div`
 const DashboardContainer = styled.aside`
     width: 100vw;
     height: 100%;
-    background-color: #ddd;
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    @media ${mediaDevices.mobileMedia} {
+        font-size: .7rem;
+    }
 
 `
 
