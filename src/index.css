@@ -47,22 +47,28 @@ span{
   cursor: pointer;
 }
 
-@media screen {
-  
-}
+
 
 
 @media (max-width: 900px) {
   #violet{
     background-color: #B39DDB;
+    padding: 0;
   }
   #orange{
     background-color: #FFB74D;
+    padding: 0;
   }
   #green{
     background-color: #A5D6A7;
+    padding: 0;
   }
   #blue{
     background-color: #81D4FA;
+    padding: 0;
   }
+}
+
+a{
+  text-decoration: none;
 }

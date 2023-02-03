@@ -31,10 +31,13 @@ const SearchLogo = styled.button`
     background-color: #fff;
     cursor: pointer;
 `
-const SearchBarContainer = styled.form``
+const SearchBarContainer = styled.form`
+
+`
 const SearchBarInput = styled.input`
     border: none;
     padding:.3rem;
+    width:65%;
 
     &:focus{
         outline: none;
