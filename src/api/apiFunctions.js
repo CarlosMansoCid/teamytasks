@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs, query, setDoc, where, deleteDoc } from "firebase/firestore"
+import { doc, getDoc, collection, getDocs, query, setDoc, where} from "firebase/firestore"
 
 
 // GENERIC COLLECTION GET
@@ -56,7 +56,7 @@ export const createNewUser = async (email, password, username) => {
 
     const docRef = doc(db, `users/${email}`);
     
-    
+     
     try{
         const user = await createUserWithEmailAndPassword(auth, email, password)
         await setDoc(docRef, {'username' : username, 'email' : email, 'teams' : [], 'notifications' : []});
@@ -67,9 +67,9 @@ export const createNewUser = async (email, password, username) => {
         return errorInfo
       };
 
-}
+} 
 
-// SIGN IN
+// SIGN IN 
 export const signIn = async (email, password) =>{
     try{
         await signInWithEmailAndPassword(auth, email, password)
@@ -78,12 +78,6 @@ export const signIn = async (email, password) =>{
         const errorInfo = error.code
         return errorInfo
       };
-}
-
-// GENERIC SETDOC
-
-const setDocument = () =>{
-
 }
 
 // UPLOAD NEW TASK

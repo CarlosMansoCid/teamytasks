@@ -28,13 +28,13 @@ const SignIn = ({selection}) =>{
 
     const handleSignInSubmit = async (e) =>{
         e.preventDefault()
-        setLoading(true)
+        setLoading(true) 
         if(selection === 'signin'){
             await signIn(e.target.email.value, e.target.password.value,'')
             .then((res) => {
                 const error = authErrorHandler(res)
                 setLoadingResponse(error)
-            })
+            }) 
         }else{
             e.preventDefault()
             setLoading(true)
@@ -47,7 +47,7 @@ const SignIn = ({selection}) =>{
         }
 
         setLoading(false)
-
+ 
     }
     
     const cleanInputs = () =>{
@@ -55,7 +55,7 @@ const SignIn = ({selection}) =>{
     }
 
     return(
-        <SingInForm onSubmit={(e)=>handleSignInSubmit(e)}>
+        <SingInForm onSubmit={(e)=>handleSignInSubmit(e)} name='form'>
             {
                 selection === 'signup' &&      
                 <>
@@ -65,13 +65,13 @@ const SignIn = ({selection}) =>{
                 
 
             }
-            <FormLabel>email</FormLabel>
-            <FormInput name="email" type="email" placeholder="example@example.com"  autoComplete="on" required onClick={()=>{cleanInputs()}}></FormInput>
-            <FormLabel>password</FormLabel>
-            <FormInput name="password" type={inputType} placeholder="password" required onClick={()=>{cleanInputs()}}></FormInput>
+            <FormLabel htmlFor="emailField">email</FormLabel>
+            <FormInput name="email" label="emailField" id="emailField" type="email" placeholder="example@example.com"  autoComplete="on" required onClick={()=>{cleanInputs()}}></FormInput>
+            <FormLabel htmlFor="password_field">password</FormLabel>
+            <FormInput name="password" label="password_field" id="password_field" type={inputType} placeholder="password" required onClick={()=>{cleanInputs()}}></FormInput>
             <CheckBox>
-                <FormInput type="checkbox" id="checkbox" name="showpassword" onChange={()=>handleShowPassword()}></FormInput>
-                <FormLabel>show password</FormLabel>
+                <FormInput type="checkbox"  id="checkbox" name="showpassword" onChange={()=>handleShowPassword()}></FormInput>
+                <FormLabel htmlFor="checkbox">show password</FormLabel>
             </CheckBox>
             {
                 loading === false ?
