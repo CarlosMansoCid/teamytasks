@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs, query, setDoc, where, deleteDoc } from "firebase/firestore"
+import { doc, getDoc, collection, getDocs, query, setDoc, where} from "firebase/firestore"
 
 
 // GENERIC COLLECTION GET
@@ -78,12 +78,6 @@ export const signIn = async (email, password) =>{
         const errorInfo = error.code
         return errorInfo
       };
-}
-
-// GENERIC SETDOC
-
-const setDocument = () =>{
-
 }
 
 // UPLOAD NEW TASK
