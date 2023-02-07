@@ -45,8 +45,6 @@ describe('Tests for the SignIn/SignUp component', ()=>{
             expect(passwordField).toHaveValue(mockUser.password)      
         })
 
-        // userEvent.click(submitButton)
-
         
     }) 
 

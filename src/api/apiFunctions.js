@@ -69,7 +69,7 @@ export const createNewUser = async (email, password, username) => {
 
 }
 
-// SIGN IN
+// SIGN IN 
 export const signIn = async (email, password) =>{
     try{
         await signInWithEmailAndPassword(auth, email, password)

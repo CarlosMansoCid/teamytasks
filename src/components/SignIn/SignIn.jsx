@@ -28,7 +28,7 @@ const SignIn = ({selection}) =>{
 
     const handleSignInSubmit = async (e) =>{
         e.preventDefault()
-        setLoading(true)
+        setLoading(true) 
         if(selection === 'signin'){
             await signIn(e.target.email.value, e.target.password.value,'')
             .then((res) => {

@@ -5,7 +5,7 @@ test('Response  when dont exist the user', async ()=>{
     const response = await authErrorHandler('auth/user-not-found')
     expect(response === 'this user dont exist')
 })
-
+ 
 test('Response  when try to login with a wrong password', async ()=>{
     const response = await authErrorHandler('auth/wrong-password')
     expect(response === 'wrong password')

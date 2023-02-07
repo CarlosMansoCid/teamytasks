@@ -3,7 +3,7 @@ import {signIn, createNewUser} from "../api/apiFunctions"
 
 
 jest.setTimeout(20000)
-
+ 
 test('Response when dont exist the user', async ()=>{
     const response = await signIn('user@gmail.com', 'password')
     expect(response === 'auth/user-not-found')
