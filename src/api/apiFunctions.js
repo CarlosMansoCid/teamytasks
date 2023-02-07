@@ -67,7 +67,7 @@ export const createNewUser = async (email, password, username) => {
         return errorInfo
       };
 
-}
+} 
 
 // SIGN IN 
 export const signIn = async (email, password) =>{

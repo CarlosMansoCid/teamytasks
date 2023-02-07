@@ -34,7 +34,7 @@ const SignIn = ({selection}) =>{
             .then((res) => {
                 const error = authErrorHandler(res)
                 setLoadingResponse(error)
-            })
+            }) 
         }else{
             e.preventDefault()
             setLoading(true)

@@ -5,7 +5,7 @@ import SignIn from "../components/SignIn/SignIn"
 
 describe('Tests for the SignIn/SignUp component', ()=>{
 
- 
+  
     afterEach(cleanup)
     test('SignIn component was rendered', ()=>{
         render(<SignIn selection={"signin"}/>)

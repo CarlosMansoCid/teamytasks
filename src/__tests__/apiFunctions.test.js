@@ -1,6 +1,6 @@
 import {signIn, createNewUser} from "../api/apiFunctions"
 
- 
+  
 
 jest.setTimeout(20000)
  
