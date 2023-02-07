@@ -10,4 +10,4 @@ test('Render the button with text props', ()=>{
 test('Render the button without text props', ()=>{
     render(<Button1 />)
     expect(screen.getByText('button')).toBeInTheDocument()
-})
+}) 

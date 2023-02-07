@@ -56,7 +56,7 @@ export const createNewUser = async (email, password, username) => {
 
     const docRef = doc(db, `users/${email}`);
     
-    
+     
     try{
         const user = await createUserWithEmailAndPassword(auth, email, password)
         await setDoc(docRef, {'username' : username, 'email' : email, 'teams' : [], 'notifications' : []});

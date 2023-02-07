@@ -1,6 +1,6 @@
 import { authErrorHandler } from '../components/authErrorsHandler'
 
-
+ 
 test('Response  when dont exist the user', async ()=>{
     const response = await authErrorHandler('auth/user-not-found')
     expect(response === 'this user dont exist')
