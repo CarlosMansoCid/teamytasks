@@ -107,7 +107,7 @@ const TaskComponent = ({hideTaskComponent, selectedTeam}) =>{
         <TaskComponentContainer>
             <TaskInput>
                 <TaskInputIcon>+</TaskInputIcon>
-                <TaskTextArea id="_texto" onInput={(e)=>handleTextInput(e)} contentEditable="true"></TaskTextArea>
+                <TaskTextArea id="_texto" onInput={(e)=>handleTextInput(e)} contentEditable="true" placeholder="Type to add"></TaskTextArea>
                 <TaskUserAvatarContainer></TaskUserAvatarContainer>
             </TaskInput>
             <TaskInput id="buttons">
